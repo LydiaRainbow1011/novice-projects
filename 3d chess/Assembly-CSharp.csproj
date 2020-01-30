@@ -60,31 +60,31 @@
      <Compile Include="Assets\Resources\scripts\ChessUpdate.cs" />
      <Compile Include="Assets\Resources\scripts\GameManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/ASUS/Desktop/Unities/3d chess/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/git/github/novice-projects/3d chess/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/UNITY/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

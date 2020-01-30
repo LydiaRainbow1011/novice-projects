@@ -96,12 +96,26 @@ public class GameManager : MonoBehaviour
             //print("Empty" + "\n" + string.Join("\n", empty));
             //print("dic" + "\n" + string.Join("\n", ai.chessAndValue));
 
-            foreach (var elem in allLine(currentPlay))
-            {
-                print("line" + "\n" + string.Join("\n", elem));
-            }
+            //print("blacks");
+            //foreach (KeyValuePair<List<Vector3>,int> elem in ai.blacklines)
+            //{
+            //print(elem.Value + "\n" + string.Join("\n",elem.Key));
 
-            
+            //}
+
+            print(ai.boardEval(ai.blacklines));
+            print(ai.boardEval(ai.whitelines));
+
+
+            //print("whites");
+            //foreach (KeyValuePair<List<Vector3>, int> elem in ai.whitelines)
+            //{
+                //print(elem.Value + "\n" + string.Join("\n", elem.Key));
+
+            //}
+
+
+
         }
         if (Input.GetKeyDown(KeyCode.Q))
             GameOver();
@@ -413,151 +427,5 @@ public class GameManager : MonoBehaviour
 
 
 
-    public List<List<Vector3>> allLine(Play play)
-    {
-        List<List<Vector3>> listOfList = new List<List<Vector3>>();
 
-        List<Vector3> group = new List<Vector3>();
-
-
-        if (play == Play.Black)
-        {
-            group = blacks;
-            listOfList = CDline(group); 
-
-            return listOfList;
-
-        }
-        else
-        {
-            group = whites;
-            //listOfList = LRline(group);
-            return listOfList;
-        }
-    }
-
-    //manage chesses in one unique single line
-    public List<List<Vector3>> LRline(List<Vector3> list)
-    {
-        List<List<Vector3>> newlist = new List<List<Vector3>>();
-
-        if (list.Count > 0)
-        {
-            List<Vector3> aline = new List<Vector3>();
-            Vector3 one = list[0];
-            while (list.Contains(one))
-            {
-                aline.Add(one);
-                one += Vector3.forward;
-            }
-
-            Vector3 two = list[0];
-            while (list.Contains(two))
-            {
-                if (!aline.Contains(two))
-                {
-                    aline.Add(two);
-                }
-                two += Vector3.back;
-            }
-
-            newlist.Add(aline);
-            list = list.Except(aline).ToList();
-            newlist = newlist.Union(LRline(list)).ToList();
-        }
-        return newlist;
-    }
-
-    public List<List<Vector3>> UDline(List<Vector3> list)
-    {
-        List<List<Vector3>> newlist = new List<List<Vector3>>();
-
-        if (list.Count > 0)
-        {
-            List<Vector3> aline = new List<Vector3>();
-            Vector3 one = list[0];
-            while (list.Contains(one))
-            {
-                aline.Add(one);
-                one += Vector3.up;
-            }
-
-            Vector3 two = list[0];
-            while (list.Contains(two))
-            {
-                if (!aline.Contains(two))
-                {
-                    aline.Add(two);
-                }
-                two += Vector3.down;
-            }
-
-            newlist.Add(aline);
-            list = list.Except(aline).ToList();
-            newlist = newlist.Union(UDline(list)).ToList();
-        }
-        return newlist;
-    }
-
-    public List<List<Vector3>> CUline(List<Vector3> list)
-    {
-        List<List<Vector3>> newlist = new List<List<Vector3>>();
-
-        if (list.Count > 0)
-        {
-            List<Vector3> aline = new List<Vector3>();
-            Vector3 one = list[0];
-            while (list.Contains(one))
-            {
-                aline.Add(one);
-                one += Vector3.up + Vector3.forward;
-            }
-
-            Vector3 two = list[0];
-            while (list.Contains(two))
-            {
-                if (!aline.Contains(two))
-                {
-                    aline.Add(two);
-                }
-                two += Vector3.down + Vector3.back;
-            }
-
-            newlist.Add(aline);
-            list = list.Except(aline).ToList();
-            newlist = newlist.Union(CUline(list)).ToList();
-        }
-        return newlist;
-    }
-
-    public List<List<Vector3>> CDline(List<Vector3> list)
-    {
-        List<List<Vector3>> newlist = new List<List<Vector3>>();
-
-        if (list.Count > 0)
-        {
-            List<Vector3> aline = new List<Vector3>();
-            Vector3 one = list[0];
-            while (list.Contains(one))
-            {
-                aline.Add(one);
-                one += Vector3.up + Vector3.back;
-            }
-
-            Vector3 two = list[0];
-            while (list.Contains(two))
-            {
-                if (!aline.Contains(two))
-                {
-                    aline.Add(two);
-                }
-                two += Vector3.down + Vector3.forward;
-            }
-
-            newlist.Add(aline);
-            list = list.Except(aline).ToList();
-            newlist = newlist.Union(CDline(list)).ToList();
-        }
-        return newlist;
-    }
 }

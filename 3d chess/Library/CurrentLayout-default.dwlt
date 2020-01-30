@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 394}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 1
-  controlID: 99
+  controlID: 76
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_MinSize: {x: 104, y: 244}
   m_MaxSize: {x: 4004, y: 8044}
   vertical: 1
-  controlID: 158
+  controlID: 135
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_MinSize: {x: 717, y: 394}
   m_MaxSize: {x: 22012, y: 14044}
   vertical: 0
-  controlID: 157
+  controlID: 179
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 302c0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 76fbffff
       m_RenameOverlay:
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Resources/scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\ASUS\Desktop\Unities\3d chess
+  m_LastProjectPath: D:\git\github\novice-projects\3d chess
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000000000000982e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -781,4 +781,4 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 112
+  m_DirectoriesAreaWidth: 137
