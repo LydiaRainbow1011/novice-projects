@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AI
     - ChessUpdate
     - GameManager
     UnityEditor.TestRunner.dll:
@@ -41,19 +42,21 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9660}
+      Script: {instanceID: 9674}
     - Class: 114
-      Script: {instanceID: 9808}
+      Script: {instanceID: 9822}
     - Class: 114
-      Script: {instanceID: 10214}
+      Script: {instanceID: 10230}
     - Class: 114
-      Script: {instanceID: 10802}
+      Script: {instanceID: 10800}
     - Class: 114
-      Script: {instanceID: 10990}
+      Script: {instanceID: 10824}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11014}
     - Class: 114
-      Script: {instanceID: 11332}
+      Script: {instanceID: 11312}
+    - Class: 114
+      Script: {instanceID: 11356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -363,7 +366,13 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 4e1061242ee95512fe98157f363c6050
+      Hash: b0678f228165e0d2022c7a1cbefe921d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AI
+  - hash:
+      serializedVersion: 2
+      Hash: 648c890897b0783cbc0cb485f2932124
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ChessUpdate
@@ -441,7 +450,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: b031f524ed03abed3e9f811175931e0a
+      Hash: 330bcab32f4871d270b0a96c9a0742d3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -508,4 +517,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/3d fivechess.unity
-  playerPath: C:/Users/ASUS/Desktop/Unities/3d chess/5chess/3d chess.exe
+  playerPath: D:/git/github/novice-projects/3d chess/buid/3d chess.exe

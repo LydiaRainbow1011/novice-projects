@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1213,6 +1213,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   currentPlay: 0
+  mode: 0
+  blacks: []
+  whites: []
+  empty: []
   gameOverCanvas: {fileID: 1432583188}
   allChessCount: 0
 --- !u!4 &1600791454
@@ -1416,6 +1420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b2a06a857ee38468ebc43c15ba4a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blackscore: 0
+  whitescore: 0
   result: {x: 0, y: 0, z: 0}
 --- !u!4 &2061806188 stripped
 Transform:

@@ -13,11 +13,11 @@ public class AI : MonoBehaviour
     private List<Vector3> blacks;
     private List<Vector3> whites;
     private List<Vector3> empty;
+    private List<Vector3> currents;
+    private List<Vector3> opponents;
 
     public Dictionary<List<Vector3>, int> blacklines;
     public Dictionary<List<Vector3>, int> whitelines;
-
-    public Dictionary<Vector3, int> chessAndValue = new Dictionary<Vector3, int>();
 
     public int blackscore;
     public int whitescore;
@@ -31,56 +31,137 @@ public class AI : MonoBehaviour
     {
         manager = GameObject.Find("Game Manager");
         gamemanager = manager.GetComponent<GameManager>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        boardUpdate();
-        allLine();
-        blackscore = boardEval(blacklines);
-        whitescore = boardEval(whitelines);
-    }
-
-    public void boardUpdate()
-    {
-        dicOfChesses = gamemanager.dicOfChesses;
-        empty = dicOfChesses[ChessType.Chess];
-        blacks = dicOfChesses[ChessType.Black];
-        whites = dicOfChesses[ChessType.White];
+        empty = gamemanager.empty;
+        blacks = gamemanager.blacks;
+        whites = gamemanager.whites;
 
         play = gamemanager.currentPlay;
 
-        evalDict();
+        current();
+
+        blacklines = allLine(blacks,empty);
+        whitelines = allLine(whites,empty);
+
+        blackscore = boardEval(blacklines);
+        whitescore = boardEval(whitelines);
+
         result = finalEval();
 
     }
 
+
+    public void current ()
+    {
+        if (play == Play.Black)
+        {
+            currents = blacks;
+            opponents = whites;
+        }
+        else
+        {
+            currents = whites;
+            opponents = blacks;
+        }
+    }
+
+    private int currentScore()
+    {
+        int result = 0;
+        if (play == Play.Black)
+        {
+            result = blackscore;
+        }
+        else
+        {
+            result = whitescore;
+        }
+        return result;
+    }
+    private int opponentScore()
+    {
+        int result = 0;
+        if (play == Play.Black)
+        {
+            result = whitescore;
+        }
+        else
+        {
+            result = blackscore;
+        }
+        return result;
+    }
+
+
     //find the location with max value
     public Vector3 finalEval()
     {
-        List<Vector3> listOfKeys = chessAndValue.Keys.ToList();
-        List<int> listOfValues = chessAndValue.Values.ToList();
+        Dictionary<Vector3, int> pairs = evalDict(empty);
+
+        List<Vector3> listOfKeys = pairs.Keys.ToList();
+        List<int> listOfValues = pairs.Values.ToList();
+
         int indexOfMax = listOfValues.IndexOf(listOfValues.Max());
+
         return listOfKeys[indexOfMax];
     }
 
     //give a value for each location in dictionary
-    public void evalDict()
+    public Dictionary<Vector3, int> evalDict(List<Vector3> group)
     {
-        chessAndValue.Clear();
-        List<Vector3> veclist = empty;
-        foreach (Vector3 loc in veclist)
+        Dictionary<Vector3, int> chessAndValue = new Dictionary<Vector3, int>();
+
+        foreach (Vector3 vec in group)
         {
-            chessAndValue[loc] = evalAStep(loc);
+            chessAndValue.Add(vec, evalAStep(vec));
         }
+
+        return chessAndValue;
+        
     }
 
     //evaluate each location
     public int evalAStep(Vector3 vec)
     {
-        return 0;
+        int oneResult = 0;
+
+        List<Vector3> mylist = new List<Vector3>();
+        List<Vector3> yourlist = new List<Vector3>();
+        List<Vector3> newEmpty = new List<Vector3>();
+
+        foreach (Vector3 item in currents)
+        {
+            mylist.Add(item);
+        }
+        mylist.Add(vec);
+
+        foreach (Vector3 item in opponents)
+        {
+            yourlist.Add(item);
+        }
+
+        foreach (Vector3 item in empty)
+        {
+            if (item != vec)
+            {
+                newEmpty.Add(item);
+            }
+        }
+
+        int myResult = boardEval(allLine(mylist, newEmpty));
+        int yourResult = boardEval(allLine(yourlist, newEmpty));
+
+        int currentscore = currentScore();
+        int opponentscore = opponentScore();
+
+        oneResult = (myResult - currentscore) - (yourResult - opponentscore);
+
+
+        return oneResult;
     }
 
 
@@ -129,43 +210,28 @@ public class AI : MonoBehaviour
 
     }
 
-
     //generate all lines and its lives
-    public void allLine()
+    public Dictionary<List<Vector3>, int> allLine(List<Vector3> group, List<Vector3> aempty)
     {
-        blacklines = new Dictionary<List<Vector3>, int>();
-        whitelines = new Dictionary<List<Vector3>, int>();
+        Dictionary<List<Vector3>, int> lines = new Dictionary<List<Vector3>, int>();
+
+        Dictionary<List<Vector3>, int> lr = LRline(group,aempty);
+        Dictionary<List<Vector3>, int> ud = UDline(group,aempty);
+        Dictionary<List<Vector3>, int> cu = CUline(group,aempty);
+        Dictionary<List<Vector3>, int> cd = CDline(group,aempty);
+
+        lines = combineDic(combineDic(combineDic(lr, ud), cu), cd);
 
 
-        List<Vector3> group1 = new List<Vector3>();
-        group1 = blacks;
-
-        Dictionary<List<Vector3>, int> lr1 = LRline(group1);
-        Dictionary<List<Vector3>, int> ud1 = UDline(group1);
-        Dictionary<List<Vector3>, int> cu1 = CUline(group1);
-        Dictionary<List<Vector3>, int> cd1 = CDline(group1);
-
-        blacklines = combineDic(combineDic(combineDic(lr1, ud1), cu1), cd1);
-
-
-        List<Vector3> group2 = new List<Vector3>();
-        group2 = whites;
-
-        Dictionary<List<Vector3>, int> lr2 = LRline(group2);
-        Dictionary<List<Vector3>, int> ud2 = UDline(group2);
-        Dictionary<List<Vector3>, int> cu2 = CUline(group2);
-        Dictionary<List<Vector3>, int> cd2 = CDline(group2);
-
-        whitelines = combineDic(combineDic(combineDic(lr2, ud2), cu2), cd2);
+        return lines;
 
     }
 
     //manage chesses in one unique single line
-    public Dictionary<List<Vector3>, int> LRline(List<Vector3> list)
+    public Dictionary<List<Vector3>, int> LRline(List<Vector3> list, List<Vector3> aempty)
     {
         List<List<Vector3>> newlist = new List<List<Vector3>>();
         Dictionary<List<Vector3>, int> lineAValue = new Dictionary<List<Vector3>, int>();
-
 
         if (list.Count > 0)
         {
@@ -189,11 +255,11 @@ public class AI : MonoBehaviour
                 two += Vector3.back;
             }
 
-            if (empty.Contains(one) && empty.Contains(two))
+            if (aempty.Contains(one) && aempty.Contains(two))
             {
                 live = 2;
             }
-            else if (!empty.Contains(one) && !empty.Contains(two))
+            else if (!aempty.Contains(one) && !aempty.Contains(two))
             {
                 live = 0;
             }
@@ -202,23 +268,19 @@ public class AI : MonoBehaviour
                 live = 1;
             }
 
-
             lineAValue.Add(aline,live);
             list = list.Except(aline).ToList();
 
-            lineAValue = lineAValue.Concat(LRline(list)).ToDictionary(x => x.Key, x => x.Value);
+            lineAValue = lineAValue.Concat(LRline(list,aempty)).ToDictionary(x => x.Key, x => x.Value);
         }
-
-        
 
         return lineAValue;
     }
 
-    public Dictionary<List<Vector3>, int> UDline(List<Vector3> list)
+    public Dictionary<List<Vector3>, int> UDline(List<Vector3> list, List<Vector3> aempty)
     {
         List<List<Vector3>> newlist = new List<List<Vector3>>();
         Dictionary<List<Vector3>, int> lineAValue = new Dictionary<List<Vector3>, int>();
-
 
         if (list.Count > 0)
         {
@@ -242,11 +304,11 @@ public class AI : MonoBehaviour
                 two += Vector3.down;
             }
 
-            if (empty.Contains(one) && empty.Contains(two))
+            if (aempty.Contains(one) && aempty.Contains(two))
             {
                 live = 2;
             }
-            else if (!empty.Contains(one) && !empty.Contains(two))
+            else if (!aempty.Contains(one) && !aempty.Contains(two))
             {
                 live = 0;
             }
@@ -255,23 +317,19 @@ public class AI : MonoBehaviour
                 live = 1;
             }
 
-
             lineAValue.Add(aline, live);
             list = list.Except(aline).ToList();
 
-            lineAValue = lineAValue.Concat(UDline(list)).ToDictionary(x => x.Key, x => x.Value);
+            lineAValue = lineAValue.Concat(UDline(list,aempty)).ToDictionary(x => x.Key, x => x.Value);
         }
-
-
 
         return lineAValue;
     }
 
-    public Dictionary<List<Vector3>, int> CUline(List<Vector3> list)
+    public Dictionary<List<Vector3>, int> CUline(List<Vector3> list, List<Vector3> aempty)
     {
         List<List<Vector3>> newlist = new List<List<Vector3>>();
         Dictionary<List<Vector3>, int> lineAValue = new Dictionary<List<Vector3>, int>();
-
 
         if (list.Count > 0)
         {
@@ -295,11 +353,11 @@ public class AI : MonoBehaviour
                 two += Vector3.down + Vector3.back;
             }
 
-            if (empty.Contains(one) && empty.Contains(two))
+            if (aempty.Contains(one) && aempty.Contains(two))
             {
                 live = 2;
             }
-            else if (!empty.Contains(one) && !empty.Contains(two))
+            else if (!aempty.Contains(one) && !aempty.Contains(two))
             {
                 live = 0;
             }
@@ -308,19 +366,16 @@ public class AI : MonoBehaviour
                 live = 1;
             }
 
-
             lineAValue.Add(aline, live);
             list = list.Except(aline).ToList();
 
-            lineAValue = lineAValue.Concat(CUline(list)).ToDictionary(x => x.Key, x => x.Value);
+            lineAValue = lineAValue.Concat(CUline(list,aempty)).ToDictionary(x => x.Key, x => x.Value);
         }
-
-
 
         return lineAValue;
     }
 
-    public Dictionary<List<Vector3>, int> CDline(List<Vector3> list)
+    public Dictionary<List<Vector3>, int> CDline(List<Vector3> list, List<Vector3> aempty)
     {
         List<List<Vector3>> newlist = new List<List<Vector3>>();
         Dictionary<List<Vector3>, int> lineAValue = new Dictionary<List<Vector3>, int>();
@@ -348,11 +403,11 @@ public class AI : MonoBehaviour
                 two += Vector3.up + Vector3.back;
             }
 
-            if (empty.Contains(one) && empty.Contains(two))
+            if (aempty.Contains(one) && aempty.Contains(two))
             {
                 live = 2;
             }
-            else if (!empty.Contains(one) && !empty.Contains(two))
+            else if (!aempty.Contains(one) && !aempty.Contains(two))
             {
                 live = 0;
             }
@@ -361,14 +416,11 @@ public class AI : MonoBehaviour
                 live = 1;
             }
 
-
             lineAValue.Add(aline, live);
             list = list.Except(aline).ToList();
 
-            lineAValue = lineAValue.Concat(CDline(list)).ToDictionary(x => x.Key, x => x.Value);
+            lineAValue = lineAValue.Concat(CDline(list,aempty)).ToDictionary(x => x.Key, x => x.Value);
         }
-
-
 
         return lineAValue;
     }

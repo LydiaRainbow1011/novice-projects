@@ -279,7 +279,7 @@ MonoBehaviour:
   m_MinSize: {x: 717, y: 394}
   m_MaxSize: {x: 22012, y: 14044}
   vertical: 0
-  controlID: 179
+  controlID: 134
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -442,7 +442,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 76fbffff
+      m_ExpandedIDs: 82dafdffc4dafdff64dbfdff76fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -458,7 +458,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 2}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -583,9 +583,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.3264561, y: 0.19099098, z: 0.091339834}
+    m_Target: {x: 12.603873, y: 0.8182902, z: 0.17492807}
     speed: 2
-    m_Value: {x: -1.3264561, y: 0.19099098, z: 0.091339834}
+    m_Value: {x: 12.603873, y: 0.8182902, z: 0.17492807}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -616,11 +616,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.015860809, y: -0.70904636, z: 0.015956186, w: 0.70480454}
     speed: 2
-    m_Value: {x: -0.015860809, y: 0.70904636, z: -0.015956186, w: -0.7048046}
+    m_Value: {x: 0.01586079, y: -0.7090455, z: 0.015956167, w: 0.7048037}
   m_Size:
-    m_Target: 13.944696
+    m_Target: 2.7452343
     speed: 2
-    m_Value: 13.944696
+    m_Value: 2.7452343
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -685,19 +685,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/scripts
+    - Assets/Resources/prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/scripts
+  - Assets/Resources/prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\git\github\novice-projects\3d chess
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9e2d0000
-    m_LastClickedID: 11678
+    m_SelectedIDs: 3e2d0000
+    m_LastClickedID: 11582
     m_ExpandedIDs: 00000000b62c0000462e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

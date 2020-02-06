@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public Play currentPlay;
     private Play initialPlay;
-    public static Mode mode;
+    public Mode mode;
 
     public static GameObject chesspoints;
     public static GameObject playedchess;
@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
     private GameObject playchess;
 
     public Dictionary<ChessType, List<Vector3>> dicOfChesses = new Dictionary<ChessType, List<Vector3>>();
-    private List<Vector3> blacks = new List<Vector3>();
-    private List<Vector3> whites = new List<Vector3>();
-    private List<Vector3> empty = new List<Vector3>();
+    public List<Vector3> blacks = new List<Vector3>();
+    public List<Vector3> whites = new List<Vector3>();
+    public List<Vector3> empty = new List<Vector3>();
     private List<GameObject> emptychess;
 
     
@@ -100,21 +100,14 @@ public class GameManager : MonoBehaviour
             //foreach (KeyValuePair<List<Vector3>,int> elem in ai.blacklines)
             //{
             //print(elem.Value + "\n" + string.Join("\n",elem.Key));
-
             //}
-
-            print(ai.boardEval(ai.blacklines));
-            print(ai.boardEval(ai.whitelines));
-
 
             //print("whites");
             //foreach (KeyValuePair<List<Vector3>, int> elem in ai.whitelines)
             //{
-                //print(elem.Value + "\n" + string.Join("\n", elem.Key));
+            //print(elem.Value + "\n" + string.Join("\n", elem.Key));
 
             //}
-
-
 
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -207,7 +200,7 @@ public class GameManager : MonoBehaviour
         manageChess();
         initialPlay = Play.Black;
         currentPlay = initialPlay;
-        mode = Mode.pvp;
+        mode = Mode.pve;
         manageMatAndchess();
 
         ai = GameObject.Find("AI").GetComponent<AI>();
@@ -261,6 +254,7 @@ public class GameManager : MonoBehaviour
         else
             return Play.Black;
     }
+
 
     //change chess as player change
     public void manageMatAndchess()
@@ -317,7 +311,6 @@ public class GameManager : MonoBehaviour
         {
             wait();
             Vector3 vec = ai.result;
-            //empty[Random.Range(0, empty.Count)];
             placeChess(vec);
         }
 

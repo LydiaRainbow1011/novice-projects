@@ -34,6 +34,14 @@ public class ChessUpdate : MonoBehaviour
         updateEverything();
     }
 
+    public void updateEverything()
+    {
+        cover = GameManager.cover;
+        mode = gamemanager.mode;
+        state = gamemanager.gameState;
+    }
+
+
     //mouse click and chess placed
     public void OnMouseDown()
     {
@@ -48,7 +56,8 @@ public class ChessUpdate : MonoBehaviour
                 }
                 else
                 {
-                    gamemanager.oneStepAfter(vec);
+                    gamemanager.placeChess(vec);
+                    gamemanager.autoplaceNext();
                 }
             }
         }
@@ -76,10 +85,4 @@ public class ChessUpdate : MonoBehaviour
         GetComponent<MeshRenderer>().material = cover;
     }
 
-    public void updateEverything()
-    {
-        cover = GameManager.cover;
-        mode = GameManager.mode;
-        state = gamemanager.gameState;
-    }
 }
